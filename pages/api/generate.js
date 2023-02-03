@@ -51,6 +51,7 @@ export default async function (req, res) {
       top_p: 1,
       stream: false,
       max_tokens: 120,
+      
 
 
     });
@@ -77,6 +78,5 @@ function generatePrompt(company, job, years) {
   return `Write me a professional cover letter in the first person, for a potential new job as a ${capitalizedJob} at this company ${capitalizedCompany}.
 
   Please incorporate the following information:
-  I have ${years} years of experience in the field as a ${capitalizedJob}.
-  I am a Veteran and former Fire-Fighter/Paramedic.`;
+  I have ${years} years of experience in the field as a ${capitalizedJob}.`;
 }

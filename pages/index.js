@@ -26,6 +26,11 @@ export default function Home() {
       }
 
       setResult(data.result);
+      try {
+        await navigator.clipboard.writeText(data.result);
+      } catch (error) {
+        console.error("Failed to copy: ", error);
+      }
       //setCompanyInput("");
       // setJobInput("");
       // setYearInput("");
