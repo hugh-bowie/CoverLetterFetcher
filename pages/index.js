@@ -26,7 +26,7 @@ export default function Home() {
       }
 
       setResult(data.result);
-      setCompanyInput("");
+      //setCompanyInput("");
       // setJobInput("");
       // setYearInput("");
     } catch (error) {

@@ -47,13 +47,14 @@ export default async function (req, res) {
     const completion = await openai.createCompletion({
       model: "text-davinci-003",
       prompt: generatePrompt(company, job, years),
-      temperature: 0.5,
-      top_p: 0.5,
-      n: 3,
-      suffix: "\t",
+      temperature: 0.9,
+      top_p: 1,
       stream: false,
+      max_tokens: 120,
+
+
     });
-    res.status(200).json({ result: completion.data.choices[1].text });
+    res.status(200).json({ result: completion.data.choices[0].text });
   } catch (error) {
     // Consider adjusting the error handling logic for your use case
     if (error.response) {
@@ -70,13 +71,12 @@ export default async function (req, res) {
   }
 }
 
-function generatePrompt([company, job, years]) {
-  const capitalizedCompany = company[0].toUpperCase();
-  const capitalizedJob = job[0].toUpperCase();
-  return `Write me a professional cover letter for a potential new job at ${capitalizedCompany} as a ${capitalizedJob}.
-  
+function generatePrompt(company, job, years) {
+  const capitalizedCompany = company.toUpperCase();
+  const capitalizedJob = job.toUpperCase();
+  return `Write me a professional cover letter in the first person, for a potential new job as a ${capitalizedJob} at this company ${capitalizedCompany}.
 
+  Please incorporate the following information:
   I have ${years} years of experience in the field as a ${capitalizedJob}.
-  I have attached my resume for your review.
-  I am a Veteran and former Fire Fighter, Paramedic.`;
+  I am a Veteran and former Fire-Fighter/Paramedic.`;
 }
