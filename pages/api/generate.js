@@ -51,7 +51,7 @@ export default async function (req, res) {
       top_p: 1,
       stream: false,
       max_tokens: 120,
-      
+
 
 
     });
@@ -73,10 +73,8 @@ export default async function (req, res) {
 }
 
 function generatePrompt(company, job, years) {
-  const capitalizedCompany = company.toUpperCase();
-  const capitalizedJob = job.toUpperCase();
-  return `Write me a professional cover letter in the first person, for a potential new job as a ${capitalizedJob} at this company ${capitalizedCompany}.
 
-  Please incorporate the following information:
-  I have ${years} years of experience in the field as a ${capitalizedJob}.`;
+  return `Write me a professional cover letter in the first person, for a potential new job as a ${job} at this company ${company}.
+  Result will be 3 or 4 sentances long. 
+  Please incorporate that I have ${years} years of experience in the field as a ${job}.`;
 }
