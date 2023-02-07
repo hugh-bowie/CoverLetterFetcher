@@ -44,13 +44,19 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>Letter Fetcher</title>
+        <title>Cover Letter Fetcher</title>
         <link rel="icon" href="/dog.png" />
       </Head>
 
       <main className={styles.main}>
         <img src="/dog.png" className={styles.icon} />
         <h3>Cover Letter Fetcher</h3>
+        <details className={styles.deets}>
+          <summary>How</summary>
+          This app sends a call to generate a unique cover letter every time, with user inputs to the ChatGPT OpenAI API with the following prompt: <br />
+          <span className={styles.green}>`Write me a professional cover letter in the first person, for a potential new job as a [Job] at this company [Company]. <br />
+            Please incorporate that I have [Years] years of experience in the field as a [Job].`</span>
+        </details>
         <form onSubmit={onSubmit}>
           <input
             type="text"
@@ -73,7 +79,7 @@ export default function Home() {
             value={yearInput}
             onChange={(e) => setYearInput(e.target.value)}
           />
-          <input type="submit" value="Generate Letter" />
+          <input type="submit" value="Fetch Letter" />
         </form>
         <div className={styles.result}>{result}</div>
       </main>
