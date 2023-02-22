@@ -4,6 +4,7 @@ import styles from "./index.module.css";
 import ReactGA from 'react-ga';
 const TRACKING_ID = process.env.GTAG; // YOUR_OWN_TRACKING_ID
 ReactGA.initialize(TRACKING_ID);
+ReactGA.pageview('/');
 export default function Home() {
   const [companyInput, setCompanyInput] = useState("");
   const [jobInput, setJobInput] = useState("");
