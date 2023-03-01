@@ -2,7 +2,8 @@ import Head from 'next/head';
 import { useState } from 'react';
 import ReactGA from 'react-ga4';
 import styles from './index.module.css';
-ReactGA.initialize(process.env.GTAG);
+const GA_MEASUREMENT_ID	= `G-9J2T8EE4HD`;
+ReactGA.initialize(GA_MEASUREMENT_ID);
 
 export default function Home() {
   const [companyInput, setCompanyInput] = useState('');
