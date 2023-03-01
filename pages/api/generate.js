@@ -1,5 +1,5 @@
-import { Configuration, OpenAIApi } from "openai";
-
+import { Configuration, OpenAIApi } from 'openai';
+import ReactGA from 'react-ga';
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 });
@@ -9,8 +9,8 @@ export default async function (req, res) {
   if (!configuration.apiKey) {
     res.status(500).json({
       error: {
-        message: "OpenAI API key not configured, please follow instructions in README.md",
-      }
+        message: 'OpenAI API key not configured, please follow instructions in README.md',
+      },
     });
     return;
   }
@@ -19,8 +19,8 @@ export default async function (req, res) {
   if (company.trim().length === 0) {
     res.status(400).json({
       error: {
-        message: "Please enter a valid Company Name",
-      }
+        message: 'Please enter a valid Company Name',
+      },
     });
     return;
   }
@@ -28,8 +28,8 @@ export default async function (req, res) {
   if (job.trim().length === 0) {
     res.status(400).json({
       error: {
-        message: "Please enter a valid Job Title",
-      }
+        message: 'Please enter a valid Job Title',
+      },
     });
     return;
   }
@@ -37,23 +37,20 @@ export default async function (req, res) {
   if (years.trim().length === 0) {
     res.status(400).json({
       error: {
-        message: "Please enter a valid Prior Experience Time",
-      }
+        message: 'Please enter a valid Prior Experience Time',
+      },
     });
     return;
   }
 
   try {
     const completion = await openai.createCompletion({
-      model: "text-davinci-003",
+      model: 'text-davinci-003',
       prompt: generatePrompt(company, job, years),
       temperature: 0.6,
       top_p: 1,
       stream: false,
       max_tokens: 120,
-
-
-
     });
     res.status(200).json({ result: completion.data.choices[0].text });
   } catch (error) {
@@ -66,14 +63,13 @@ export default async function (req, res) {
       res.status(500).json({
         error: {
           message: 'An error occurred during your request.',
-        }
+        },
       });
     }
   }
 }
 
 function generatePrompt(company, job, years) {
-
   return `Write me a professional cover letter in the first person, for a potential new job as a ${job} at this company ${company}.
   Result will be 3 or 4 sentances long. 
   Please incorporate that I have ${years} years of experience in the field as a ${job}.`;
